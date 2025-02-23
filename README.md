@@ -1,2 +1,2 @@
 # Self-Testers
-Here are some test scripts
+Just some test scripts for UMIX PAs
