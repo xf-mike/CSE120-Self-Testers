@@ -31,7 +31,45 @@
 
 
 
-如果你觉得我的log无法理解或者哪里错了, 请务必告诉我
+如果你觉得我的log无法理解或者哪里错了, 请提交PR
+如果你觉得我的框架对你有帮助, 请给我一个Star
 
+最后, 我想特别感谢一下ygong15 (https://github.com/ygong15)。
+没有他的帮助, 我也很难构建出这样细致的test cases。
+
+
+Mike F
+
+----------------------------------------------------------------------------------------
+
+This testing framework is a simulation of the kernel.
+
+Simply put, we do not focus on what each process is doing.
+Instead, we abstract kernel operations and examine whether our implemented interfaces are correct by tracking kernel operations themselves rather than using DPrintf logging.
+
+We only need a single process to simulate the interaction between the kernel and multiple processes.
+
+You can try running t first (t is short for "test").
+This will generate a testbase.c file.
+It is created by processing your mycode.c with some string manipulations, injecting it into injector.c, and finally forming the output.
+Once you take a look, you'll understand—it’s very simple.
+
+Our test cases are based on testbase.c.
+
+All test cases should only call interfaces from injector.c to simulate kernel operations.
+
+You can modify the test case called in the main function of test.c and then rerun t (just type t and press Enter in the terminal).
+The corresponding test logs will be stored in the log folder.
+
+Your output might differ from mine since everyone's implementation can have slight differences.
+
+Note: By default, DPrintf in mycode.c is muted.
+If you need the original output, you can enable verbose mode by running: t -v.
+
+Of course, you can also write your own test cases.
+There are plenty of examples in test.c.
+Take a look, and you’ll naturally get the hang of it.
+
+If you find my logs confusing or notice any errors, please let me know!
 
 Mike F
