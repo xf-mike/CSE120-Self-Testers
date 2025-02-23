@@ -338,6 +338,77 @@ void test10() {  // MLFQ: long term can increase the gap of quantum each process
 	EndTest();
 }
 
+
+void test11() {  // PFS: get 0% CPU test
+	// Some people may forget to reset the stride when non-requesting processes get 0% CPU:
+	// Because we can not give a reasonable value (it should be +∞) for the stride of
+	// non-requesting processes when there is no Free CPU left, so,
+	// some people may forget to reset its stride. (they tried to prevent divide by zero error)
+	// This will cause a bug: non-requesting processes still keep its previous stride (CPU ratio)
+	SetSchedPolicy(PROPORTIONAL);
+	InitTest();
+	StartingProc(2);
+	MyRequestCPUrate(1, 1); // 1 get 1% and 2 get 99%
+	MyRequestCPUrate(1, 100); // 1 get 100% and 2 get 0% (where people may forget)
+
+
+	clearQuantumCount();
+	mute();
+	int i;
+	for (i = 0; i < 100; i++) {
+		HandleTimerIntr();
+		MyRequestCPUrate(1, 100);  // repeated request should have no effect
+		MyRequestCPUrate(2, 0);  // this request should have no effect
+	}
+	printQuantumCount();
+
+	DPrintf("Again!");
+	clearQuantumCount();
+	for (i = 0; i < 100; i++) {
+		HandleTimerIntr();
+		MyRequestCPUrate(2, 1);  // invalid request should have no effect
+		MyRequestCPUrate(3, 0);  // invalid request should have no effect
+	}
+	printQuantumCount();
+
+	unmute();
+
+
+
+	// Test whether your pass normalization still work in extreme case
+	StartingProc(3);
+	MyRequestCPUrate(1, 2); // 1 get 1%, 2 get 49%, 3 get 49%
+	MyRequestCPUrate(3, 98); // 1 get 1%, 2 get 0%, 3 get 98%
+	// A common case may happened is that normalization fail in the next quantum:
+	// pass[a] reaches L, which might exceed your expected upper bound of pass,
+	// this can lead to normalization fail
+
+	mute();
+	clearQuantumCount();
+	for (i = 0; i < 100; i++) {
+		HandleTimerIntr();
+		MyRequestCPUrate(1, 100);  // repeated request should have no effect
+		MyRequestCPUrate(2, 0);  // this request should have no effect
+	}
+	printQuantumCount();
+
+	DPrintf("Again!");
+	clearQuantumCount();
+	for (i = 0; i < 100; i++) {
+		HandleTimerIntr();
+		MyRequestCPUrate(2, 1);  // invalid request should have no effect
+		MyRequestCPUrate(3, 0);  // invalid request should have no effect
+	}
+	printQuantumCount();
+
+	unmute();
+
+	EndCurrentProc();
+	EndCurrentProc();
+	EndCurrentProc();
+	EndTest();
+}
+
 void Main()
 {
 	test0();

@@ -1,0 +1,36 @@
+StartingProc(1): Success
+SchedProc() → 1
+------test inited-------
+StartingProc(2): Success
+SchedProc() → 1
+MyRequestCPUrate(p=1, n=1): Success
+MyRequestCPUrate(p=1, n=100): Success
+
+---------QuantumCount----------
+Process[1]: 100 / 100
+---------------------------------
+Again!
+---------QuantumCount----------
+Process[1]: 100 / 100
+---------------------------------
+StartingProc(3): Success
+SchedProc() → 1
+MyRequestCPUrate(p=1, n=2): Success
+MyRequestCPUrate(p=3, n=98): Success
+
+---------QuantumCount----------
+Process[1]: 2 / 100
+Process[3]: 98 / 100
+---------------------------------
+Again!
+---------QuantumCount----------
+Process[1]: 2 / 100
+Process[3]: 98 / 100
+---------------------------------
+EndingProc(3): Success
+SchedProc() → 1
+EndingProc(1): Success
+SchedProc() → 2
+EndingProc(2): Success
+SchedProc() → 0
+------test ended--------
