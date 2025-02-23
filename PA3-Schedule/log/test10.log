@@ -1,0 +1,53 @@
+StartingProc(1): Success
+SchedProc() → 1
+------test inited-------
+Interrupt Occur
+SchedProc() → 1
+Interrupt Occur
+SchedProc() → 1
+Interrupt Occur
+SchedProc() → 1
+StartingProc(2): Success
+SchedProc() → 2
+Interrupt Occur
+SchedProc() → 2
+Interrupt Occur
+SchedProc() → 2
+Interrupt Occur
+SchedProc() → 1
+StartingProc(3): Success
+SchedProc() → 3
+Interrupt Occur
+SchedProc() → 3
+StartingProc(4): Success
+SchedProc() → 4
+
+---------QuantumCount----------
+Process[1]: 28 / 100
+Process[2]: 28 / 100
+Process[3]: 29 / 100
+Process[4]: 15 / 100
+---------------------------------
+
+---------QuantumCount----------
+Process[1]: 339 / 1100
+Process[2]: 252 / 1100
+Process[3]: 254 / 1100
+Process[4]: 255 / 1100
+---------------------------------
+
+---------QuantumCount----------
+Process[1]: 4092 / 11100
+Process[2]: 2915 / 11100
+Process[3]: 2046 / 11100
+Process[4]: 2047 / 11100
+---------------------------------
+EndingProc(2): Success
+SchedProc() → 3
+EndingProc(3): Success
+SchedProc() → 4
+EndingProc(4): Success
+SchedProc() → 1
+EndingProc(1): Success
+SchedProc() → 0
+------test ended--------

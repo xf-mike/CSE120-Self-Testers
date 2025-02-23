@@ -1,0 +1,60 @@
+StartingProc(1): Success
+SchedProc() → 1
+------test inited-------
+Interrupt Occur
+SchedProc() → 1
+Interrupt Occur
+SchedProc() → 1
+Interrupt Occur
+SchedProc() → 1
+Interrupt Occur
+SchedProc() → 1
+StartingProc(2): Success
+SchedProc() → 2
+Interrupt Occur
+SchedProc() → 1
+Interrupt Occur
+SchedProc() → 1
+↓ p1.L: 1 → 0. Keep Runing
+Interrupt Occur
+SchedProc() → 1
+↑ p1.L: 1 → 0. Keep Runing
+Interrupt Occur
+SchedProc() → 2
+Interrupt Occur
+SchedProc() → 2
+Interrupt Occur
+SchedProc() → 1
+Interrupt Occur
+SchedProc() → 1
+Interrupt Occur
+SchedProc() → 2
+Interrupt Occur
+SchedProc() → 2
+Interrupt Occur
+SchedProc() → 1
+Interrupt Occur
+SchedProc() → 1
+Interrupt Occur
+SchedProc() → 2
+Interrupt Occur
+SchedProc() → 2
+↓ p2.L: 1 → 0. Keep Runing
+Interrupt Occur
+SchedProc() → 2
+↑ p2.L: 1 → 0. Keep Runing
+Interrupt Occur
+SchedProc() → 1
+Interrupt Occur
+SchedProc() → 1
+↓ p1.L: 1 → 0. Keep Runing
+Interrupt Occur
+SchedProc() → 1
+↑ p1.L: 1 → 0. Keep Runing
+Interrupt Occur
+SchedProc() → 2
+EndingProc(2): Success
+SchedProc() → 1
+EndingProc(1): Success
+SchedProc() → 0
+------test ended--------

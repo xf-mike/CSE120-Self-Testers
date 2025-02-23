@@ -1,0 +1,66 @@
+StartingProc(1): Success
+SchedProc() → 1
+------test inited-------
+MyRequestCPUrate(p=1, n=-1): Fail
+MyRequestCPUrate(p=1, n=101): Fail
+MyRequestCPUrate(p=1, n=100): Success
+MyRequestCPUrate(p=1, n=0): Success
+StartingProc(2): Success
+SchedProc() → 1
+StartingProc(3): Success
+SchedProc() → 1
+StartingProc(4): Success
+SchedProc() → 1
+StartingProc(5): Success
+SchedProc() → 1
+StartingProc(6): Success
+SchedProc() → 1
+StartingProc(7): Success
+SchedProc() → 1
+StartingProc(8): Success
+SchedProc() → 1
+StartingProc(9): Success
+SchedProc() → 1
+StartingProc(10): Success
+SchedProc() → 1
+Interrupt Occur
+SchedProc() → 2
+Interrupt Occur
+SchedProc() → 3
+Interrupt Occur
+SchedProc() → 4
+Interrupt Occur
+SchedProc() → 5
+Interrupt Occur
+SchedProc() → 6
+Interrupt Occur
+SchedProc() → 7
+Interrupt Occur
+SchedProc() → 8
+Interrupt Occur
+SchedProc() → 9
+Interrupt Occur
+SchedProc() → 10
+Interrupt Occur
+SchedProc() → 1
+EndingProc(1): Success
+SchedProc() → 2
+EndingProc(2): Success
+SchedProc() → 3
+EndingProc(3): Success
+SchedProc() → 4
+EndingProc(4): Success
+SchedProc() → 5
+EndingProc(5): Success
+SchedProc() → 6
+EndingProc(6): Success
+SchedProc() → 7
+EndingProc(7): Success
+SchedProc() → 8
+EndingProc(8): Success
+SchedProc() → 9
+EndingProc(9): Success
+SchedProc() → 10
+EndingProc(10): Success
+SchedProc() → 0
+------test ended--------

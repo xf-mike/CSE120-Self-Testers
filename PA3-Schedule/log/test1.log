@@ -1,0 +1,6 @@
+StartingProc(1): Success
+SchedProc() → 1
+------test inited-------
+------test ended--------
+EndingProc(1): Success
+SchedProc() → 0

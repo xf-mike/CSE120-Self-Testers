@@ -1,0 +1,77 @@
+StartingProc(1): Success
+SchedProc() → 1
+------test inited-------
+MyRequestCPUrate(p=1, n=40): Success
+MyRequestCPUrate(p=2, n=30): Success
+MyRequestCPUrate(p=3, n=10): Success
+MyRequestCPUrate(p=4, n=10): Success
+100 quantum of stable period!
+---------QuantumCount----------
+Process[1]: 39 / 100
+Process[2]: 29 / 100
+Process[3]: 10 / 100
+Process[4]: 10 / 100
+Process[5]: 2 / 100
+Process[6]: 2 / 100
+Process[7]: 2 / 100
+Process[8]: 2 / 100
+Process[9]: 2 / 100
+Process[10]: 2 / 100
+---------------------------------
+another 100 quantum of stable period!
+---------QuantumCount----------
+Process[1]: 42 / 100
+Process[2]: 32 / 100
+Process[3]: 10 / 100
+Process[4]: 10 / 100
+Process[5]: 1 / 100
+Process[6]: 1 / 100
+Process[7]: 1 / 100
+Process[8]: 1 / 100
+Process[9]: 1 / 100
+Process[10]: 1 / 100
+---------------------------------
+MyRequestCPUrate(p=4, n=20): Success
+EndingProc(1): Success
+SchedProc() → 2
+EndingProc(2): Success
+SchedProc() → 3
+100 quantum of stable period!
+---------QuantumCount----------
+Process[3]: 10 / 100
+Process[4]: 21 / 100
+Process[5]: 12 / 100
+Process[6]: 12 / 100
+Process[7]: 11 / 100
+Process[8]: 11 / 100
+Process[9]: 11 / 100
+Process[10]: 12 / 100
+---------------------------------
+another 100 quantum of stable period!
+---------QuantumCount----------
+Process[3]: 10 / 100
+Process[4]: 20 / 100
+Process[5]: 11 / 100
+Process[6]: 11 / 100
+Process[7]: 12 / 100
+Process[8]: 12 / 100
+Process[9]: 12 / 100
+Process[10]: 12 / 100
+---------------------------------
+EndingProc(3): Success
+SchedProc() → 4
+EndingProc(4): Success
+SchedProc() → 5
+EndingProc(5): Success
+SchedProc() → 6
+EndingProc(6): Success
+SchedProc() → 7
+EndingProc(7): Success
+SchedProc() → 8
+EndingProc(8): Success
+SchedProc() → 9
+EndingProc(9): Success
+SchedProc() → 10
+EndingProc(10): Success
+SchedProc() → 0
+------test ended--------

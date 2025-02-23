@@ -1,0 +1,96 @@
+StartingProc(1): Success
+SchedProc() → 1
+------test inited-------
+StartingProc(2): Success
+SchedProc() → 1
+StartingProc(3): Success
+SchedProc() → 1
+StartingProc(4): Success
+SchedProc() → 1
+StartingProc(5): Success
+SchedProc() → 1
+StartingProc(6): Success
+SchedProc() → 1
+StartingProc(7): Success
+SchedProc() → 1
+StartingProc(8): Success
+SchedProc() → 1
+StartingProc(9): Success
+SchedProc() → 1
+StartingProc(10): Success
+SchedProc() → 1
+MyRequestCPUrate(p=1, n=99): Success
+
+---------QuantumCount----------
+Process[1]: 891 / 900
+Process[2]: 1 / 900
+Process[3]: 1 / 900
+Process[4]: 1 / 900
+Process[5]: 1 / 900
+Process[6]: 1 / 900
+Process[7]: 1 / 900
+Process[8]: 1 / 900
+Process[9]: 1 / 900
+Process[10]: 1 / 900
+---------------------------------
+Again!
+---------QuantumCount----------
+Process[1]: 891 / 900
+Process[2]: 1 / 900
+Process[3]: 1 / 900
+Process[4]: 1 / 900
+Process[5]: 1 / 900
+Process[6]: 1 / 900
+Process[7]: 1 / 900
+Process[8]: 1 / 900
+Process[9]: 1 / 900
+Process[10]: 1 / 900
+---------------------------------
+MyRequestCPUrate(p=1, n=4): Success
+Interrupt Occur
+SchedProc() → 2
+EndingProc(2): Success
+SchedProc() → 1
+
+---------QuantumCount----------
+Process[1]: 32 / 800
+Process[3]: 96 / 800
+Process[4]: 96 / 800
+Process[5]: 96 / 800
+Process[6]: 96 / 800
+Process[7]: 96 / 800
+Process[8]: 96 / 800
+Process[9]: 96 / 800
+Process[10]: 96 / 800
+---------------------------------
+Again!
+---------QuantumCount----------
+Process[1]: 32 / 800
+Process[3]: 96 / 800
+Process[4]: 96 / 800
+Process[5]: 96 / 800
+Process[6]: 96 / 800
+Process[7]: 96 / 800
+Process[8]: 96 / 800
+Process[9]: 96 / 800
+Process[10]: 96 / 800
+---------------------------------
+EndingProc(1): Success
+SchedProc() → 3
+EndingProc(3): Success
+SchedProc() → 4
+EndingProc(4): Success
+SchedProc() → 5
+EndingProc(5): Success
+SchedProc() → 6
+EndingProc(6): Success
+SchedProc() → 7
+EndingProc(7): Success
+SchedProc() → 8
+EndingProc(8): Success
+SchedProc() → 9
+EndingProc(9): Success
+SchedProc() → 10
+EndingProc(10): Success
+SchedProc() → 0
+------test ended--------

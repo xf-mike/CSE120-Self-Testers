@@ -1,0 +1,10 @@
+StartingProc(1): Success
+SchedProc() → 1
+------test inited-------
+StartingProc(2): Success
+------test ended--------
+EndingProc(1): Success
+SchedProc() → 2
+warn: hanging process 2
+EndingProc(2): Success
+SchedProc() → 0

@@ -1,0 +1,44 @@
+#!/bin/bash
+# test for pa3
+
+SOURCE_FILE="mycode3.c"
+INJECTOR_FILE="injector.c"
+OUTPUT_FILE="testbase.c"
+
+# 解析参数
+VERBOSE=0
+if [ "$1" == "-v" ]; then
+    VERBOSE=1
+fi
+
+sed 's/int SchedProc()/int _SchedProc()/' "$SOURCE_FILE" > TEMP1
+sed 's/DoSched()/_DoSched()/' TEMP1 > TEMP2
+sed 's/StartingProc/_StartingProc/' TEMP2 > TEMP1
+sed 's/EndingProc/_EndingProc/' TEMP1 > TEMP2
+sed 's/HandleTimerIntr/_HandleTimerIntr/' TEMP2 > TEMP1
+sed 's/MyRequestCPUrate/_MyRequestCPUrate/' TEMP1 > TEMP2
+
+sed 's/#include "mycode3.h"/\/\/#include "mycode3.h"/' TEMP2 > TEMP1
+sed 's/SetTimer/\/\/SetTimer/' TEMP1 > TEMP2
+sed 's/sys.h/testbase.h/' TEMP2 > TEMP1
+
+# 只有在非 verbose 模式下才注释掉 DPrintf
+if [ "$VERBOSE" -eq 0 ]; then
+    sed 's/DPrintf/\/\/DPrintf/' TEMP1 > TEMP2
+else
+    cp TEMP1 TEMP2
+fi
+
+echo "" >> TEMP2
+cat "$INJECTOR_FILE" >> TEMP2
+
+mv TEMP2 "$OUTPUT_FILE"
+rm TEMP1
+
+make testbase.o 1>/dev/null
+
+make test 1>/dev/null
+./test
+
+rm ./test
+rm ./testbase.o
