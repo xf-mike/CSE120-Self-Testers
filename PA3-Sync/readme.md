@@ -4,7 +4,7 @@
 
 注意这次的测试样例没有标准log
 
-在tests中每个test case会有注释说明正确的log应该是什么样子的
+在**tests.c** 文件中每个test case会有注释说明正确的log应该是什么样子的
 
 我们已经尽快可能减少了随机性带来的影响，但是还是可能存在
 
@@ -25,7 +25,7 @@ Usage: t <testID>, e.g., t 1
 
 Note that this time, the test samples do not have a standard log.
 
-In the tests, each test case will have comments explaining what the correct log should look like.
+In the **tests.c** file, each test case will have comments explaining what the correct log should look like.
 
 We have minimized the impact of randomness as much as possible, but it may still exist.
 
