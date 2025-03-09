@@ -1,0 +1,43 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+    echo "Usage: t <testID> , e.g. t 1"
+    exit 1
+fi
+
+# 1. 删除 pa4d.c 中的 注释和main() function，输出到 testbase.c
+# 1. Remove comments and the main() function from pa4d.c, output to testbase.c
+sed '1,/#include/ {/#include/!d}' pa4d.c > testbase.c
+sed -i '/void Main(/,/^}/d' testbase.c
+
+# 2. 修改 driveRoad 函数的参数列表，输出到 testbase.c
+# 2. Modify the parameter list of the driveRoad function, output to testbase.c
+sed -i 's/void driveRoad(int from, int speed)/void driveRoad(int ticket, int from, int speed)/' testbase.c
+
+# 3. 删掉 "ticket = ArriveRoad();" 行，输出到 testbase.c
+# 3. Delete the line "ticket = ArriveRoad();", output to testbase.c
+sed -i '/ticket = ArriveRoad ();/d' testbase.c
+
+# 4. 修改 "int p, ticket;" 为 "int p;"，输出到 testbase.c
+# 4. Change "int p, ticket;" to "int p;", output to testbase.c
+sed -i 's/int p, ticket;/int p;/' testbase.c
+
+
+number=$1
+input_file="tests.c"
+output_file="test.c"
+
+if [ ! -f "$input_file" ]; then
+    echo "Error: $input_file not found!"
+    exit 1
+fi
+
+# 替换 test0() 为 test<number>()
+# Replace test0() with test<number>()
+sed "s/test0();/test$number();/g" "$input_file" > "$output_file"
+
+make test 1>/dev/null
+rm ./test.c # ./testbase.c ./mycode4.o
+
+./test
+rm ./test
