@@ -132,11 +132,14 @@ void test5() {
 
 
 void test6() {
-    // 车1上路堵着路口，对向来了车4，然后车1开出车位1，即路口，同向来了2。注意，在3到来之前，2和4都不可以上路，即使1开出去了。
-    // 最终上路顺序是1324
-    // 注意，"等待"的定义不限于队列里面那些"ready to go"的车，停车场里的也算
-    // Car 1 blocks the intersection, Car 4 comes from the opposite direction, then Car 1 leaves the intersection, and Car 2 comes from the same direction. Before Car 3 arrives, neither Car 2 nor Car 4 can go on the road.
-    // The final order of going on the road is 1, 3, 2, 4. Note that "waiting" is not limited to cars in the queue, but also those in the parking lot.
+    // 车1上路堵着路口，对向来了车4，然后车1开出车位1，即路口，同向来了2，最后对向来了3
+    // 注意，在3到来之前，4不可以上路，即使1开出去了。
+    // 最终上路顺序是1234
+    // 注意，"对面有车在等待"的定义仅限于队列里面那些"ready to go"的车，在等待更小ticket出现而不能准备上路的车不算
+    // Car 1 blocks the intersection, Car 4 comes from the opposite direction, then Car 1 leaves the intersection, and Car 2 comes from the same direction. Car 3 arrives the opposite side.
+    // Note before Car 3 arrives, Car 4 can not go on the road even 1 has exited.
+    // The final order of going on the road is 1, 2, 3, 4.
+    // Note that "Cars waiting on the opposite side" is only limited to cars in the queue, but not including those cars waiting for ones with smaller tickets to appear.
     newCar(0, WEST, 200);
     newCar(40, WEST, 200);
     newCar(300, EAST, 200);
@@ -145,8 +148,10 @@ void test6() {
 
 
 void test7() {
-    // 车1上路堵着路口，同向来了车4，然后车1开到2，对向来了3, 同向来了2，对向来了5，上路顺序是13254
-    // Car 1 blocks the intersection, Car 4 comes from the same direction, then Car 1 reaches Car 2, Car 3 comes from the opposite direction, Car 2 comes from the same direction, and Car 5 comes from the opposite direction. The order of going on the road is 1, 3, 2, 5, 4.
+    // 车1上路堵着路口，同向来了车4，然后车1开到2，对向来了3, 同向来了2，对向来了5
+    // 上路顺序是12345
+    // Car 1 blocks the intersection, Car 4 comes from the same direction, then Car 1 reaches Car 2, Car 3 comes from the opposite direction, Car 2 comes from the same direction, and Car 5 comes from the opposite direction.
+    // The order of going on the road is 1, 2, 3, 4, 5.
     newCar(0, WEST, 200);
     newCar(30, WEST, 200);
     newCar(20, EAST, 200);
@@ -167,8 +172,10 @@ void test8() {
 
 
 void test9() {
-    // 车123上路(没有堵住路口，或者说车位1), 对向来了车5，同向来了车6，对向来了车7，然后同向来了车4，上路顺序是1235476
-    // Cars 1, 2, and 3 go on the road (without blocking the intersection, or Car 1 spot), Car 5 comes from the opposite direction, Car 6 comes from the same direction, Car 7 comes from the opposite direction, then Car 4 comes from the same direction. The order of going on the road is 1, 2, 3, 5, 4, 7, 6.
+    // 车123上路(没有堵住路口，或者说车位1), 对向来了车5，同向来了车6，对向来了车7，然后同向来了车4
+    // 上路顺序是1234567
+    // Cars 1, 2, and 3 go on the road (without blocking the intersection, or Car 1 spot), Car 5 comes from the opposite direction, Car 6 comes from the same direction, Car 7 comes from the opposite direction, then Car 4 comes from the same direction.
+    // The order of going on the road is 1, 2, 3, 4, 5, 6, 7.
     newCar(0, WEST, 200);
     newCar(5, WEST, 200);
     newCar(10, WEST, 200);
@@ -184,9 +191,6 @@ void test10() {
     // 跟9类似：车1先从对向开出去，然后23上路也开出去, 对向来了车5，同向来了6，对向来了7，然后同向来了4
     // Similar to test 9: Car 1 exits from the opposite direction first, then cars 2 and 3 enter and also exit.
     // A car (5) arrives from the opposite direction, followed by car 6 from the same direction, then car 7 from the opposite direction, and finally car 4 from the same direction.
-    
-    // 但是这回上路顺序会变成1234567 // 参考piazza post 437
-    // However, the road entry order this time will be 1-2-3-4-5-6-7 // Refer to Piazza post 437
     newCar(0, EAST, 400);
     newCar(205, WEST, 400);
     newCar(210, WEST, 400);
@@ -210,11 +214,10 @@ void test11() {
 
 
 void test12() {
-    // 测试驶出路口(第一个车位)的 side effect，顺序是 1-3-2-4
-    // Test the side effect of leaving the first road position (intersection), the road entry order is 1-3-2-4.
-    
-    // 注意 1 驶出后还会卡一会，直到 3 来
-    // Note that after car 1 exits, it will still block for a while until car 3 arrives.
+    // 测试驶出路口(第一个车位)的 side effect
+    // 顺序是 1-2-3-4
+    // Test the side effect of leaving the first road position (intersection)
+    // road entry order is 1-2-3-4.
     newCar(5, WEST, 500);
     newCar(0, WEST, 200);
     newCar(300, EAST, 200);
@@ -241,12 +244,12 @@ void test14() {
     // 车 1 上路堵着路口，对向来了车 4，同向来了车 2
     // Car 1 enters and blocks the intersection, car 4 arrives from the opposite direction, and car 2 arrives from the same direction.
     
-    // 然后车 1 开出车位 1（即路口），注意，在 3 到来之前，2 和 4 都不可以上路，即使 1 开出去了
+    // 然后车 1 开出车位 1（即路口），注意，在 3 到来之前，4 不可以上路，即使 1 开出去了
     // Then car 1 exits position 1 (the intersection).
-    // Note: Before car 3 arrives, neither car 2 nor car 4 can enter the road, even though car 1 has exited.
+    // Note: Before car 3 arrives, car 4 can not enter the road, even though car 1 has exited.
     
-    // 最终上路顺序是 1-3-2-4
-    // The final road entry order is 1-3-2-4.
+    // 最终上路顺序是 1-2-3-4
+    // The final road entry order is 1-2-3-4.
     newCar(0, WEST, 200);
     newCar(10, WEST, 200);
     newCar(300, EAST, 200);
